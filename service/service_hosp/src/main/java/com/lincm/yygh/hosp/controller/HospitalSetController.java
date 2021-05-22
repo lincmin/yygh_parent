@@ -3,9 +3,7 @@ package com.lincm.yygh.hosp.controller;
 import com.lincm.yygh.hosp.service.HospitalSetService;
 import com.lincm.yygh.model.hosp.HospitalSet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +23,12 @@ public class HospitalSetController {
         List<HospitalSet> list = hospitalSetService.list();
         //list转换json返回
         return list;
+    }
+
+    //逻辑删除医院设置
+    @DeleteMapping("{id}")
+    public boolean removeHospSet(@PathVariable Long id){
+        boolean flag = hospitalSetService.removeById(id);
+        return flag;
     }
 }
