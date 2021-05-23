@@ -1,5 +1,6 @@
 package com.lincm.yygh.hosp.controller;
 
+import com.lincm.yygh.common.result.Result;
 import com.lincm.yygh.hosp.service.HospitalSetService;
 import com.lincm.yygh.model.hosp.HospitalSet;
 import io.swagger.annotations.Api;
@@ -23,19 +24,23 @@ public class HospitalSetController {
     //查询医院设置表所有信息
     @ApiOperation(value="获取所有医院设置信息")
     @GetMapping("findAll")
-    public List<HospitalSet> findAllHospitalSet(){
+    public Result findAllHospitalSet(){
         //调用service方法
         List<HospitalSet> list = hospitalSetService.list();
         //list转换json返回
-        return list;
+        return Result.ok(list);
     }
 
     //逻辑删除医院设置
     @ApiOperation(value="逻辑删除医院设置信息")
     @ApiParam(name="id",value="医院设置id",required=true)
     @DeleteMapping("{id}")
-    public boolean removeHospSet(@PathVariable Long id){
+    public Result removeHospSet(@PathVariable Long id){
         boolean flag = hospitalSetService.removeById(id);
-        return flag;
+       if(flag){
+           return Result.ok();
+       }else{
+           return Result.fail();
+       }
     }
 }
