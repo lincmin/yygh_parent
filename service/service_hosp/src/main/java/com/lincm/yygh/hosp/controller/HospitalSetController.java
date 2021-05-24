@@ -106,4 +106,9 @@ public class HospitalSetController {
         }
     }
     //批量删除医院设置
+    @DeleteMapping("batchRemove")
+    public Result batchRemoveHospitalSet(@RequestBody List<Long> idList){
+         hospitalSetService.removeByIds(idList);
+         return Result.ok();
+    }
 }
