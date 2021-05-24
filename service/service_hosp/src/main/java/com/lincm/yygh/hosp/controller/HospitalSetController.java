@@ -90,7 +90,11 @@ public class HospitalSetController {
         }
     }
     //根据id获取医院设置
-
+    @GetMapping("getHospSet/{id}")
+    public Result getHospSet(@PathVariable Long id){
+        HospitalSet hospitalSet = hospitalSetService.getById(id);
+        return Result.ok(hospitalSet);
+    }
     //修改医院设置
 
     //批量删除医院设置
