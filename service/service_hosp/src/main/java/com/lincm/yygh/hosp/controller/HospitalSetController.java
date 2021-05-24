@@ -123,4 +123,13 @@ public class HospitalSetController {
         return Result.ok();
     }
 
+    //发送签名秘钥key
+    @PutMapping("sendKey/{id}")
+    public Result sendKey(@PathVariable Long id){
+        HospitalSet hospitalSet = hospitalSetService.getById(id);
+        String signKey = hospitalSet.getSignKey();
+        String hoscode = hospitalSet.getHoscode();
+        //TODO发送短信
+        return Result.ok();
+    }
 }
